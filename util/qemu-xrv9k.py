@@ -33,7 +33,7 @@ cmd1 = ['qemu-system-x86_64', '-enable-kvm', '-smbios', 'type=1,manufacturer=cis
 '-device', 'virtio-net-pci,netdev=xr6,mac=52:00:00:ff:06:%s' %(sys.argv[2]), \
 '-netdev', 'tap,id=xr7,script=no,downscript=no,ifname=rtr%sxr7,' %(sys.argv[2]), \
 '-device', 'virtio-net-pci,netdev=xr7,mac=52:00:00:ff:07:%s' %(sys.argv[2]), \
-'-pidfile', '/opt/vlt/img/pid/%s.pid' %(sys.argv[3])]
+'-pidfile', '/opt/voltron-testbed/util/pid/%s.pid' %(sys.argv[3])]
 
 subprocess.call(cmd1)
 

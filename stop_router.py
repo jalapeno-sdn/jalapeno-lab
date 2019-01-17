@@ -25,7 +25,7 @@ if (sys.argv[1]) in ['r77']:
 if (sys.argv[1]) in ['r78']:
     subprocess.call(['virsh', 'destroy', 'r78'])
 
-with open("pid/%s.pid" %(sys.argv[1])) as file:
+with open("util/pid/%s.pid" %(sys.argv[1])) as file:
     pid = file.read()
 
 parent = psutil.Process(int(pid))
