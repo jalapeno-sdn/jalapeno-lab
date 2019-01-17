@@ -1,7 +1,7 @@
 <domain type='kvm' id='14'>
-  <name>r4</name>
+  <name>r04</name>
   <uuid>fe952adf-36ed-4bb8-16c1-6f71240b8c04</uuid>
-  <description>IAD_PR_r4</description>
+  <description>IAD_PR04</description>
   <memory unit='KiB'>4000000</memory>
   <currentMemory unit='KiB'>4000000</currentMemory>
   <vcpu placement='static'>1</vcpu>
@@ -30,7 +30,7 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='/opt/vlt/voltron/img/r4.img'/>
+      <source file='/opt/images/r04.img'/>
       <backingStore/>
       <target dev='vda' bus='virtio'/>
       <alias name='virtio-disk0'/>
