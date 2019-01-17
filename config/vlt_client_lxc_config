@@ -1,0 +1,28 @@
+# Template used to create this container: /usr/share/lxc/templates/lxc-ubuntu
+# Parameters passed to the template:
+# Template script checksum (SHA-1): 865a6e4050da6a45575473b0a71f84ced41604fe
+# For additional config options, please look at lxc.container.conf(5)
+
+# Uncomment the following line to support nesting containers:
+#lxc.include = /usr/share/lxc/config/nesting.conf
+# (Be aware this has security implications)
+
+
+# Common configuration
+lxc.include = /usr/share/lxc/config/ubuntu.common.conf
+
+# Container specific configuration
+lxc.rootfs.path = dir:/var/lib/lxc/vlt_client/rootfs
+lxc.uts.name = vlt_client
+lxc.arch = amd64
+
+# Network configuration
+lxc.net.0.type = veth
+lxc.net.0.link = vlt_br
+#lxc.net.0.link.vlan.id = 102
+lxc.net.0.flags = up
+lxc.net.0.hwaddr = 00:16:3e:f1:f0:51
+lxc.net.0.name = eth0
+lxc.net.0.ipv4.address = 10.0.130.2/24 255.255.255.0
+lxc.net.0.ipv4.gateway = 10.0.130.1
+lxc.net.0.veth.pair = client-eth0

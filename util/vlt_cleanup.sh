@@ -1,22 +1,32 @@
 #/bin/bash
 
 echo stopping routers
-/opt/voltron/stop_router.py r4
-/opt/voltron/stop_router.py r3
-/opt/voltron/stop_router.py r2
-/opt/voltron/stop_router.py r1
-/opt/voltron/stop_router.py r0
+/opt/vlt/stop_router.py r4
+/opt/vlt/stop_router.py r3
+/opt/vlt/stop_router.py r2
+/opt/vlt/stop_router.py r1
+/opt/vlt/stop_router.py r0
 sleep 1
 
 echo stopping vms
-virsh destroy vlt_client1
-virsh destroy vlt_openshift_vm
-virsh undefine vlt_client1
-virsh undefine vlt_openshift_vm
+virsh destroy os_base1
+virsh undefine os_base1
+virsh destroy r71
+virsh undefine r71
+virsh destroy r72
+virsh undefine r72
+virsh destroy r76
+virsh undefine r76
+virsh destroy r77
+virsh undefine r77
+virsh destroy r78
+virsh undefine r78
 
 echo deleting routes
-ip route del 10.0.250.0/23 via 10.0.254.2 dev vlt_outside_br
-ip route del 10.0.252.0/23 via 10.0.254.2 dev vlt_outside_br
+ip route del 10.0.250.0/23 via 10.0.254.71 dev vlt_outside_br
+ip route del 10.0.252.0/23 via 10.0.254.72 dev vlt_outside_br
+ip route del 10.0.130.0/23 via 10.0.254.71 dev vlt_outside_br
+ip route del 10.0.131.0/23 via 10.0.254.72 dev vlt_outside_br
 ip route
 
 echo removing iptables entries
