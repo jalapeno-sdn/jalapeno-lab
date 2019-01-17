@@ -61,20 +61,20 @@ iptables -t nat -A PREROUTING -p tcp -m tcp --dport 30881 -j DNAT --to-destinati
 iptables --table nat --list
 
 echo adding xrv9k pidfiles
-touch img/pid/r00.pid
-touch img/pid/r01.pid
-touch img/pid/r02.pid
-touch img/pid/r03.pid
-touch img/pid/r04.pid
-touch img/pid/r05.pid
-touch img/pid/r11.pid
-touch img/pid/r12.pid
-touch img/pid/r22.pid
-touch img/pid/r23.pid
-touch img/pid/r32.pid
-touch img/pid/r33.pid
-touch img/pid/r34.pid
-touch img/pid/r35.pid
+touch pid/r00.pid
+touch pid/r01.pid
+touch pid/r02.pid
+touch pid/r03.pid
+touch pid/r04.pid
+touch pid/r05.pid
+touch pid/r11.pid
+touch pid/r12.pid
+touch pid/r22.pid
+touch pid/r23.pid
+touch pid/r32.pid
+touch pid/r33.pid
+touch pid/r34.pid
+touch pid/r35.pid
 
 echo starting routers
 ./start_router.py r00
