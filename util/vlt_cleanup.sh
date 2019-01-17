@@ -1,11 +1,11 @@
 #/bin/bash
 
 echo stopping routers
-/opt/vlt/stop_router.py r4
-/opt/vlt/stop_router.py r3
-/opt/vlt/stop_router.py r2
-/opt/vlt/stop_router.py r1
-/opt/vlt/stop_router.py r0
+/opt/vlt/stop_router.py r04
+/opt/vlt/stop_router.py r03
+/opt/vlt/stop_router.py r02
+/opt/vlt/stop_router.py r01
+/opt/vlt/stop_router.py r00
 sleep 1
 
 echo stopping vms
