@@ -30,7 +30,7 @@ ip route
 #iptables -t nat -A POSTROUTING -o <server outside interface> -j MASQUERADE
 #iptables --table nat --list
 
-cd /opt/vlt/
+cd /opt/voltron-testbed/
 sleep 1
 
 echo define and launch openshift vm
@@ -116,14 +116,14 @@ sleep 2
 ./start_router.py r35
 sleep 1
 
-echo creating vlt_client lxc
-lxc-create -t ubuntu -n vlt_client
+echo creating vltclient00 lxc
+lxc-create -t ubuntu -n vltclient00
 
 echo applying vlt_client lxc config file
-cp config/vlt_client_lxc_config /var/lib/lxc/vlt_client/config
+cp config/vltclient00_lxc_config /var/lib/lxc/vltclient00/config
 
-echo start vlt_client
-lxc-start -n vlt_client
+echo start vltclient00
+lxc-start -n vltclient00
 
 
 echo done
