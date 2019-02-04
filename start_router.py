@@ -315,5 +315,63 @@ if (sys.argv[1]) in ['r77']:
 if (sys.argv[1]) in ['r76']:
     subprocess.call(['virsh', 'start', 'r76'])
 
+##################################################################################
+## ATL Metro Topology ##
+
+# r40 - ATL CSR1k metro access device 
+
+#g1 -  vlt_br/tag300 to client subnet 10.0.201.0/24
+#g2 -  vlt_br/tag301 to atl_r41 gi1
+#g3 -  vlt_br/tag302 to atl_r42 gi1
+#g4 -  vlt_outside_br
+if (sys.argv[1]) in ['r40']:
+    subprocess.call(['virsh', 'start', 'r40'])
+
+# r41 - ATL CSR1k metro agg device 
+
+#g1 -  vlt_br/tag301 to atl_r40 gi2
+#g2 -  vlt_br/tag304 to atl_br22 gi0/0/0/6
+#g3 -  vlt_br/tag305 to atl_br23 gi0/0/0/5
+#g4 -  vlt_outside_br
+#g5 -  vlt_br/tag308 to atl_r43 gi2
+#g6 -  vlt_br/tag310 to atl_r44 gi2
+if (sys.argv[1]) in ['r41']:
+    subprocess.call(['virsh', 'start', 'r41'])
+
+# r42 - ATL CSR1k metro agg device 
+
+#g1 -  vlt_br/tag301 to atl_r40 gi3
+#g2 -  vlt_br/tag306 to atl_br22 gi0/0/0/7
+#g3 -  vlt_br/tag307 to atl_br23 gi0/0/0/6
+#g4 -  vlt_outside_br
+#g5 -  vlt_br/tag309 to atl_r43 gi1
+#g6 -  vlt_br/tag311 to atl_r44 gi1
+if (sys.argv[1]) in ['r42']:
+    subprocess.call(['virsh', 'start', 'r42'])
+    
+# r43 - ATL CSR1k metro border device 
+
+#g1 -  vlt_br/tag309 to atl_r42 gi5
+#g2 -  vlt_br/tag308 to atl_r41 gi5
+#g3 -  vlt_br/tag312 to ext_peer r76 gi6
+#g4 -  vlt_outside_br
+if (sys.argv[1]) in ['r43']:
+    subprocess.call(['virsh', 'start', 'r43'])
+    
+# r44 - ATL CSR1k metro border device 
+
+#g1 -  vlt_br/tag311 to atl_r42 gi6
+#g2 -  vlt_br/tag310 to atl_r41 gi6
+#g3 -  vlt_br/tag313 to ext_peer r76 gi5
+#g4 -  vlt_outside_br
+if (sys.argv[1]) in ['r43']:
+    subprocess.call(['virsh', 'start', 'r43'])
+    
+
+############################
 print "router started"
+
+
+
+
 
