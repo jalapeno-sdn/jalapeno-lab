@@ -45,23 +45,23 @@
     </controller>
     <interface type='bridge'>
       <target dev='r40ge1'/>
-      <mac address='00:99:40:00:bc:a2'/>
+      <mac address='00:99:40:00:bc:a1'/>
       <source bridge='vlt_br'/>
       <virtualport type='openvswitch'>
-        <parameters interfaceid='9ef0e7de-11ec-4ac8-892c-e22303b65800'/>
+        <parameters interfaceid='9ef0e7de-11ec-4ac8-892c-e22303b65801'/>
       </virtualport>
       <vlan>
-        <tag id='300'/>
+        <tag id='100'/>
       </vlan>
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
     </interface>
     <interface type='bridge'>
       <target dev='r40ge2'/>
-      <mac address='00:99:40:01:bc:a3'/>
+      <mac address='00:99:40:01:bc:a2'/>
       <source bridge='vlt_br'/>
       <virtualport type='openvswitch'>
-        <parameters interfaceid='3d021e2e-11a7-47e3-b2c9-1a72c92f1201'/>
+        <parameters interfaceid='3d021e2e-11a7-47e3-b2c9-1a72c92f1202'/>
       </virtualport>
       <vlan>
         <tag id='301'/>
@@ -71,10 +71,10 @@
     </interface>
     <interface type='bridge'>
       <target dev='r40ge3'/>
-      <mac address='00:99:40:02:bc:a2'/>
+      <mac address='00:99:40:02:bc:a3'/>
       <source bridge='vlt_br'/>
       <virtualport type='openvswitch'>
-        <parameters interfaceid='9ef0e7de-11ec-4ac8-892c-e22303b65802'/>
+        <parameters interfaceid='9ef0e7de-11ec-4ac8-892c-e22303b65803'/>
       </virtualport>
       <vlan>
         <tag id='302'/>
@@ -84,13 +84,26 @@
     </interface>
     <interface type='bridge'>
       <target dev='r40ge4'/>
-      <mac address='00:99:40:03:bc:a3'/>
+      <mac address='00:99:40:03:bc:a4'/>
       <source bridge='vlt_mgt_br'/>
       <virtualport type='openvswitch'>
-        <parameters interfaceid='3d021e2e-11a7-47e3-b2c9-1a72c92f1203'/>
+        <parameters interfaceid='3d021e2e-11a7-47e3-b2c9-1a72c92f1204'/>
       </virtualport>
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+    </interface>
+    <interface type='bridge'>
+      <target dev='r40ge5'/>
+      <mac address='00:99:40:02:bc:a5'/>
+      <source bridge='vlt_br'/>
+      <virtualport type='openvswitch'>
+        <parameters interfaceid='9ef0e7de-11ec-4ac8-892c-e22303b65805'/>
+      </virtualport>
+      <vlan>
+        <tag id='300'/>
+      </vlan>
+      <model type='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
     </interface>
     <serial type='pty'>
       <target port='0'/>
