@@ -67,6 +67,8 @@ iptables -t nat -A PREROUTING -p tcp -m tcp --dport 30902 -j DNAT --to-destinati
 iptables -t nat -A PREROUTING -p tcp -m tcp --dport 30308 -j DNAT --to-destination 10.0.250.2:30308
 iptables -t nat -A PREROUTING -p tcp -m tcp --dport 30880 -j DNAT --to-destination 10.0.250.2:30880
 iptables -t nat -A PREROUTING -p tcp -m tcp --dport 30881 -j DNAT --to-destination 10.0.250.2:30881
+iptables -t nat -A POSTROUTING -o vlt_outside_br -j MASQUERADE
+iptables -t nat -A POSTROUTING -o <server_outside_nic> -j MASQUERADE
 iptables --table nat --list
 
 echo adding xrv9k pidfiles
