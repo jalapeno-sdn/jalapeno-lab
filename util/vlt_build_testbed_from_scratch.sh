@@ -22,6 +22,7 @@ ip route add 10.0.128.0/23 via 10.0.254.72 dev vlt_outside_br
 ip route add 10.0.130.0/24 via 10.0.254.71 dev vlt_outside_br
 ip route add 10.0.131.0/24 via 10.0.254.76 dev vlt_outside_br
 ip route add 10.0.132.0/23 via 10.0.254.78 dev vlt_outside_br
+ip route add 10.0.192.0/21 via 10.0.254.76 dev vlt_outside_br
 
 ip route
 
