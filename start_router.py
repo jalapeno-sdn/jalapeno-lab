@@ -364,8 +364,8 @@ if (sys.argv[1]) in ['r43']:
 #g2 -  vlt_br/tag310 to atl_r41 gi6
 #g3 -  vlt_br/tag313 to ext_peer r76 gi5
 #g4 -  vlt_outside_br
-if (sys.argv[1]) in ['r43']:
-    subprocess.call(['virsh', 'start', 'r43'])
+if (sys.argv[1]) in ['r44']:
+    subprocess.call(['virsh', 'start', 'r44'])
     
 
 ############################
