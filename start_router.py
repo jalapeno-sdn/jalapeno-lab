@@ -24,6 +24,7 @@ import subprocess
 #gi0/0/0/4 - vtl_br/tag104 to r2 gi0/0/0/0
 #gi0/0/0/5 - vlt_br/tag105 to r11 gi0/0/0/5
 #gi0/0/0/6 - vtl_br/tag106 to r12 gi0/0/0/4
+#gi0/0/0/7 - vtl_br/tag111 to r06 gi0/0/0/0
 if (sys.argv[1]) in ['r00']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r00.img', '00', 'r00'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_mgt_br', 'rtr00mgt1'])
@@ -34,6 +35,7 @@ if (sys.argv[1]) in ['r00']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr00xr4', 'tag=104'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr00xr5', 'tag=105'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr00xr6', 'tag=106'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr00xr7', 'tag=111'])
 
 # r1 Chicago POP Peering Router
 #gi0/0/0/0 - vlt_br/tag103 to r0 gi0/0/0/3
@@ -42,6 +44,7 @@ if (sys.argv[1]) in ['r00']:
 #gi0/0/0/3 - vlt_br/tag125 to r12 gi0/0/0/2
 #gi0/0/0/4 - vlt_br/tag119 to r11 gi0/0/0/2
 #gi0/0/0/5 - vlt_br/tag112 to r5 RR gi0/0/0/0
+#gi0/0/0/6 - vlt_br/tag114 to r6 LSR gi0/0/0/1
 
 if (sys.argv[1]) in ['r01']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r01.img', '01', 'r01'])
@@ -52,6 +55,7 @@ if (sys.argv[1]) in ['r01']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr01xr3', 'tag=125'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr01xr4', 'tag=119'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr01xr5', 'tag=112'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr01xr6', 'tag=114'])
 
 # r2 Chicago POP Peering Router
 #gi0/0/0/0 - vlt_br/tag104 to r0 gi0/0/0/4
@@ -60,6 +64,7 @@ if (sys.argv[1]) in ['r01']:
 #gi0/0/0/3 - vlt_br/tag126 to r12 gi0/0/0/3
 #gi0/0/0/4 - vlt_br/tag120 to r11 gi0/0/0/3
 #gi0/0/0/5 - vlt_br/tag113 to r5 RR gi0/0/0/1
+#gi0/0/0/6 - vlt_br/tag115 to r6 LSR gi0/0/0/2
 
 if (sys.argv[1]) in ['r02']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r02.img', '02', 'r02'])
@@ -70,8 +75,9 @@ if (sys.argv[1]) in ['r02']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr3', 'tag=126'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr4', 'tag=120'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr5', 'tag=113'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr6', 'tag=115'])
 
-# r5 Chicago Route Reflector
+# r05 Chicago Route Reflector
 #gi0/0/0/0 - vlt_br/tag112 to r1 gi0/0/0/5
 #gi0/0/0/1 - vlt_br/tag113 to r2 gi0/0/0/5
 
@@ -80,6 +86,18 @@ if (sys.argv[1]) in ['r05']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_mgt_br', 'rtr05mgt1'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr05xr0', 'tag=112'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr05xr1', 'tag=113'])
+
+# r06 Chicago LSR
+#gi0/0/0/0 - vlt_br/tag111 to r0 gi0/0/0/7
+#gi0/0/0/1 - vlt_br/tag114 to r1 gi0/0/0/6
+#gi0/0/0/2 - vlt_br/tag115 to r2 gi0/0/0/6
+
+if (sys.argv[1]) in ['r06']:
+    subprocess.call(['python', 'util/qemu-xrv9k.py', 'r06.img', '06', 'r06'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_mgt_br', 'rtr06mgt1'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr06xr0', 'tag=111'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr06xr1', 'tag=114'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr06xr2', 'tag=115'])
 
 # External Peers - to save disk and memory, CSR1kv virtual routers are used for external peers in the topology
 # CSR1k OVS plumbing is managed in the virsh xml files found in voltron/config/
