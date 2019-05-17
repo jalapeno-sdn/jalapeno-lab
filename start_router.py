@@ -65,6 +65,7 @@ if (sys.argv[1]) in ['r01']:
 #gi0/0/0/4 - vlt_br/tag120 to r11 gi0/0/0/3
 #gi0/0/0/5 - vlt_br/tag113 to r5 RR gi0/0/0/1
 #gi0/0/0/6 - vlt_br/tag115 to r6 LSR gi0/0/0/2
+#gi0/0/0/7 - vlt_br/tag116 to game_svr00
 
 if (sys.argv[1]) in ['r02']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r02.img', '02', 'r02'])
@@ -76,6 +77,7 @@ if (sys.argv[1]) in ['r02']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr4', 'tag=120'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr5', 'tag=113'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr6', 'tag=115'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr7', 'tag=116'])
 
 # r05 Chicago Route Reflector
 #gi0/0/0/0 - vlt_br/tag112 to r1 gi0/0/0/5
