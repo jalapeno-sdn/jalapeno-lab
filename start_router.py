@@ -93,6 +93,8 @@ if (sys.argv[1]) in ['r05']:
 #gi0/0/0/0 - vlt_br/tag111 to r0 gi0/0/0/7
 #gi0/0/0/1 - vlt_br/tag114 to r1 gi0/0/0/6
 #gi0/0/0/2 - vlt_br/tag115 to r2 gi0/0/0/6
+#gi0/0/0/1 - vlt_br/tag117 to r11 gi0/0/0/8
+#gi0/0/0/2 - vlt_br/tag118 to r12 gi0/0/0/8
 
 if (sys.argv[1]) in ['r06']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r06.img', '06', 'r06'])
@@ -100,6 +102,8 @@ if (sys.argv[1]) in ['r06']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr06xr0', 'tag=111'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr06xr1', 'tag=114'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr06xr2', 'tag=115'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr06xr3', 'tag=117'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr06xr4', 'tag=118'])
 
 # External Peers - to save disk and memory, CSR1kv virtual routers are used for external peers in the topology
 # CSR1k OVS plumbing is managed in the virsh xml files found in voltron/config/
@@ -192,6 +196,7 @@ if (sys.argv[1]) in ['r35']:
 #gi0/0/0/5 -  vlt_br/tag127 to IAD_BR03
 #gi0/0/0/6 -  vlt_br/tag128 to IAD_BR04
 #gi0/0/0/7 -  vlt_br/tag133 to ATL_BR22
+#gi0/0/0/8 -  vlt_br/tag117 to ORD_LSR06
 
 if (sys.argv[1]) in ['r11']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r11.img', '11', 'r11'])
@@ -204,6 +209,7 @@ if (sys.argv[1]) in ['r11']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr11xr5', 'tag=127'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr11xr6', 'tag=128'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr11xr7', 'tag=133'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr11xr8', 'tag=117'])
 
 # r12 - Herndon LER
 #gi0/0/0/0 -  vlt_br/tag124 to IAD_SP34
@@ -214,6 +220,7 @@ if (sys.argv[1]) in ['r11']:
 #gi0/0/0/5 -  vlt_br/tag139 to IAD_BR03
 #gi0/0/0/6 -  vlt_br/tag130 to IAD_BR04
 #gi0/0/0/7 -  vlt_br/tag131 to DFW_LSR13
+#gi0/0/0/8 -  vlt_br/tag118 to ORD_LSR06
 
 if (sys.argv[1]) in ['r12']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r12.img', '12', 'r12'])
@@ -226,6 +233,7 @@ if (sys.argv[1]) in ['r12']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr12xr5', 'tag=139'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr12xr6', 'tag=130'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr12xr7', 'tag=131'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr12xr8', 'tag=118'])
 
 # r3 - Herndon Border Router
 #gi0/0/0/0 -  vlt_br/tag127 to IAD_LER11 
@@ -390,6 +398,7 @@ if (sys.argv[1]) in ['r44']:
 
 ############################
 print "router started"
+
 
 
 
