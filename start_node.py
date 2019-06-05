@@ -401,26 +401,26 @@ if (sys.argv[1]) in ['r44']:
 
 # r20 - CSR1k metro access device 
 
-#g1 -  vlt_br/tag320 to client subnet 10.0.20.0/24
-#g2 -  vlt_br/tag321 to XR r21
-#g4 -  vlt_mgt_br
+#g1 -  br320 to client subnet 10.0.20.0/24
+#g2 -  br321 to XR r21
+#g4 -  virbr0
 if (sys.argv[1]) in ['r20']:
     subprocess.call(['virsh', 'start', 'r20'])
 
 # r21 - XRv9k device 
 
-#g1 -  vlt_br/tag321 to CSR1k r20
-#g2 -  vlt_br/tag322 to collection stack
-#g3 -  vlt_br/tag323 to vNX device
+#g1 -  br321 to CSR1k r20
+#g2 -  br322 to collection stack
+#g3 -  br323 to vNX device
 
 if (sys.argv[1]) in ['r21']:
     subprocess.call(['virsh', 'start', 'r21'])    
     
 # r22 - vNX device 
 
-#g1 -  vlt_br/tag323 to XR r21
-#g2 -  vlt_br/tag324 to client subnet 10.0.21.0/24
-#g3 -  vlt_mgt_br
+#g1 -  br323 to XR r21
+#g2 -  br324 to client subnet 10.0.21.0/24
+#g3 -  virbr0
 
 if (sys.argv[1]) in ['r22']:
     subprocess.call(['virsh', 'start', 'r22'])  
@@ -430,11 +430,15 @@ if (sys.argv[1]) in ['lxc20']:
     subprocess.call(['lxc-start', '-n', 'lxc20'])  
     
 # client 21
-if (sys.argv[1]) in ['lxc20']:
-    subprocess.call(['lxc-start', '-n', 'lxc20']) 
+if (sys.argv[1]) in ['lxc21']:
+    subprocess.call(['lxc-start', '-n', 'lxc21'])
+
+# client 21
+if (sys.argv[1]) in ['lxc22']:
+    subprocess.call(['lxc-start', '-n', 'lxc22']) 
 
 ############################
-print "router started"
+print "node started"
 
 
 

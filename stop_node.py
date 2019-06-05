@@ -25,6 +25,24 @@ if (sys.argv[1]) in ['r77']:
 if (sys.argv[1]) in ['r78']:
     subprocess.call(['virsh', 'destroy', 'r78'])
 
+if (sys.argv[1]) in ['r20']:
+    subprocess.call(['virsh', 'destroy', 'r20'])
+
+if (sys.argv[1]) in ['r21']:
+    subprocess.call(['virsh', 'destroy', 'r21'])
+
+if (sys.argv[1]) in ['r22']:
+    subprocess.call(['virsh', 'destroy', 'r22'])
+
+if (sys.argv[1]) in ['lxc20']:
+    subprocess.call(['lxc-stop', '-n', 'lxc20'])
+
+if (sys.argv[1]) in ['lxc21']:
+    subprocess.call(['lxc-stop', '-n', 'lxc21'])
+
+if (sys.argv[1]) in ['lxc22']:
+    subprocess.call(['lxc-stop', '-n', 'lxc22'])
+
 with open("util/pid/%s.pid" %(sys.argv[1])) as file:
     pid = file.read()
 
