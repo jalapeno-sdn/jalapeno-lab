@@ -1,0 +1,164 @@
+
+<domain type='kvm' id='1' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+  <name>r21</name>
+  <uuid>1179cf61-f0af-4fb2-82e8-10a1efa87c1c</uuid>
+  <title>r21_xrv9k_6.5.3</title>
+  <memory unit='MB'>14336</memory>
+  <currentMemory unit='MB'>14336</currentMemory>
+  <vcpu placement='static' cpuset="">2</vcpu>
+  <cpu mode='host-passthrough'/>
+
+  <os>
+    <type arch='x86_64' machine='pc'>hvm</type>
+    <boot dev='hd'/>
+    <bootmenu enable='yes'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <pae/>
+  </features>
+  <clock offset='utc'/>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>restart</on_crash>
+  <devices>
+    <emulator>/usr/bin/kvm</emulator>
+
+    <!-- HDA Disk -->
+    <disk type='file' device='disk'>
+     <driver name='qemu' type='qcow2'/>
+     <source file='/opt/images/voltron/r21.img'/>
+     <target dev='vda' bus='virtio'/>
+     <alias name='virtio-disk0'/>
+    </disk>
+
+    <controller type='ide' index='0'>
+      <alias name='ide0'/>
+    </controller>
+
+    <!-- Host Interface 1 -->
+    <interface type='bridge'>
+      <mac address='52:46:B1:C8:D6:AC'/>
+      <source bridge='virbr0'/>
+      <target dev='r21mgt0'/>
+      <model type='virtio'/>
+      <driver name='qemu'>
+      <!-- Uncomment the below to enable -->
+      <!--host  csum='off' /-->
+      <!-- Uncomment the below to enable -->
+      <!-- guest  csum='off' /-->
+      </driver>
+      <alias name='r21mgt00'/>
+    </interface>
+
+    <!-- Host Interface 2 -->
+    <interface type='bridge'>
+      <mac address='52:46:82:9C:86:43'/>
+      <source bridge='virbr0'/>
+      <target dev='r21mgt1'/>
+      <model type='virtio'/>
+      <driver name='qemu'>
+      </driver>
+      <alias name='r21mgt1'/>
+    </interface>
+
+    <!-- Host Interface 3 -->
+    <interface type='bridge'>
+      <mac address='52:46:EA:FC:6E:4E'/>
+      <source bridge='virbr0'/>
+      <target dev='r21mgt2'/>
+      <model type='virtio'/>
+      <driver name='qemu'>
+      </driver>
+      <alias name='r21mgt2'/>
+    </interface>
+
+    <!-- Data Interface 0 -->
+    <interface type='bridge'>
+      <mac address='52:46:1E:12:00:00'/>
+      <source bridge='br321'/>
+      <target dev='r21ge0'/>
+      <model type='e1000'/>
+      <driver >
+      </driver>
+      <alias name='r21ge0'/>
+    </interface>
+
+    <!-- Data Interface 1 -->
+    <interface type='bridge'>
+      <mac address='52:46:1E:12:00:01'/>
+      <source bridge='br322'/>
+      <target dev='r21ge1'/>
+      <model type='e1000'/>
+      <driver >
+      </driver>
+      <alias name='r21ge1'/>
+    </interface>
+
+    <!-- Data Interface 2 -->
+    <interface type='bridge'>
+      <mac address='52:46:1E:12:00:02'/>
+      <source bridge='br323'/>
+      <target dev='r21ge2'/>
+      <model type='e1000'/>
+      <driver >
+      </driver>
+      <alias name='r21ge2'/>
+    </interface>
+
+    <!-- Data Interface 3 -->
+    <interface type='bridge'>
+      <mac address='52:46:1E:12:00:03'/>
+      <source bridge='virbr0'/>
+      <target dev='r21ge3'/>
+      <model type='e1000'/>
+      <driver >
+      </driver>
+      <alias name='r21ge3'/>
+    </interface>
+
+    <!-- SerialPortSection -->
+    <!-- Use the following to view or create serial ports: -->
+    <!--   virsh qemu-monitor-command  -hmp "info chardev" -->
+
+    <!-- Access: XR Console (telnet localhost 20210) -->
+    <serial type='tcp'>
+       <source mode="bind" host="0.0.0.0" service="20210"/>
+       <protocol type="telnet"/>
+       <target port="0"/>
+    </serial>
+    <!-- Access: XR Aux (telnet localhost 20211) -->
+    <serial type='tcp'>
+       <source mode="bind" host="0.0.0.0" service="20211"/>
+       <protocol type="telnet"/>
+       <target port="1"/>
+    </serial>
+    <!-- Access: Admin / Calvados (telnet localhost 20212) -->
+    <serial type='tcp'>
+       <source mode="bind" host="0.0.0.0" service="20212"/>
+       <protocol type="telnet"/>
+       <target port="2"/>
+    </serial>
+    <!-- Access: HOST VM (telnet localhost 20213)  -->
+    <serial type='tcp'>
+       <source mode="bind" host="0.0.0.0" service="20213"/>
+       <protocol type="telnet"/>
+       <target port="3"/>
+    </serial>
+
+  <!-- virsh console instead of telnet for first serial port -->
+  <!-- <console type='pty'> -->
+  <!--  <target type='serial' port='0'/> -->
+  <!-- </console> -->
+
+  </devices>
+  <qemu:commandline>
+     <!-- Add extra monitor port for the virsh monitor tab -->
+     <qemu:arg value='-chardev'/>
+     <qemu:arg value='socket,id=monitor0,host=0.0.0.0,port=20214,ipv4,server,nowait,telnet'/>
+     <qemu:arg value='-monitor'/>
+     <qemu:arg value='chardev:monitor0'/>
+     <!-- OptionalArgs -->
+  </qemu:commandline>
+</domain>
