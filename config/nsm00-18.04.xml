@@ -1,9 +1,10 @@
 <domain type='kvm' id='16'>
   <name>nsm00-18.04</name>
   <description>network service mesh</description>
-  <memory unit='KiB'>1048576</memory>
-  <currentMemory unit='KiB'>2097142</currentMemory>
+  <memory unit='KiB'>4000000</memory>
+  <currentMemory unit='KiB'>4000000</currentMemory>
   <vcpu placement='static'>2</vcpu>
+  <cpu mode='host-passthrough' /> 
   <resource>
     <partition>/machine</partition>
   </resource>
