@@ -7,7 +7,7 @@ import sys
 cmdargs = str(sys.argv)
 
 cmd1 = ['qemu-system-x86_64', '-enable-kvm', '-smbios', 'type=1,manufacturer=cisco,product=CiscoIOSXRv9000,uuid=d8d586bb-95e7-4a28-bc05-eca03d99b029', \
-'-cpu', 'host', '-drive', 'file=/opt/vlt/img/%s,if=virtio,media=disk,index=1' %(sys.argv[1]), \
+'-cpu', 'host', '-drive', 'file=/opt/images/voltron/%s,if=virtio,media=disk,index=1' %(sys.argv[1]), \
 '-smp', 'cores=2,threads=1,sockets=1', '-display', 'none', '-daemonize', '-m', '14336', '-rtc', 'base=utc', \
 '-serial', 'telnet::20%s0,server,nowait' %(sys.argv[2]), '-serial', 'telnet::20%s1,server,nowait' %(sys.argv[2]), \
 '-serial', 'telnet::20%s2,server,nowait' %(sys.argv[2]), '-serial', 'telnet::20%s3,server,nowait' %(sys.argv[2]), \
@@ -37,7 +37,7 @@ cmd1 = ['qemu-system-x86_64', '-enable-kvm', '-smbios', 'type=1,manufacturer=cis
 '-device', 'virtio-net-pci,netdev=xr8,mac=52:00:00:ff:08:%s' %(sys.argv[2]), \
 '-netdev', 'tap,id=xr9,script=no,downscript=no,ifname=rtr%sxr9,' %(sys.argv[2]), \
 '-device', 'virtio-net-pci,netdev=xr9,mac=52:00:00:ff:09:%s' %(sys.argv[2]), \
-'-pidfile', '/opt/vlt/img/pid/%s.pid' %(sys.argv[3])]
+'-pidfile', '/opt/voltron-testbed/util/pid/%s.pid' %(sys.argv[3])]
 
 subprocess.call(cmd1)
 

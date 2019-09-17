@@ -221,6 +221,7 @@ if (sys.argv[1]) in ['r11']:
 #gi0/0/0/6 -  vlt_br/tag130 to IAD_BR04
 #gi0/0/0/7 -  vlt_br/tag131 to DFW_LSR13
 #gi0/0/0/8 -  vlt_br/tag118 to ORD_LSR06
+#gi0/0/0/9 -  vlt_br/tag143 to DFW_LSR07
 
 if (sys.argv[1]) in ['r12']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r12.img', '12', 'r12'])
@@ -234,12 +235,14 @@ if (sys.argv[1]) in ['r12']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr12xr6', 'tag=130'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr12xr7', 'tag=131'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr12xr8', 'tag=118'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr12xr9', 'tag=143'])
 
 # r3 - Herndon Border Router
 #gi0/0/0/0 -  vlt_br/tag127 to IAD_LER11 
 #gi0/0/0/1 -  vlt_br/tag134 to Ext72
 #gi0/0/0/2 -  vlt_br/tag135 to Ext78
 #gi0/0/0/3 -  vlt_br/tag139 to IAD_LER12
+#gi0/0/0/4 -  vlt_br/tag144 to DFW_LSR07
 
 if (sys.argv[1]) in ['r03']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r03.img', '03', 'r03'])
@@ -248,13 +251,14 @@ if (sys.argv[1]) in ['r03']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr03xr1', 'tag=134'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr03xr2', 'tag=135'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr03xr3', 'tag=139'])
-
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr03xr4', 'tag=144'])
 
 # r4 - Herndon Border Router
 #gi0/0/0/0 -  vlt_br/tag128 to IAD_LER11 
 #gi0/0/0/1 -  vlt_br/tag136 to Ext78
 #gi0/0/0/2 -  vlt_br/tag138 to Ext77
 #gi0/0/0/3 -  vlt_br/tag130 to IAD_LER12
+#gi0/0/0/4 -  vlt_br/tag145 to DFW_LSR07
 
 if (sys.argv[1]) in ['r04']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r04.img', '04', 'r04'])
@@ -263,6 +267,19 @@ if (sys.argv[1]) in ['r04']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr04xr1', 'tag=136'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr04xr2', 'tag=138'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr04xr3', 'tag=130'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr04xr4', 'tag=145'])
+
+# r7 - Dallas LSR
+#gi0/0/0/0 -  vlt_br/tag143 to LER12 
+#gi0/0/0/1 -  vlt_br/tag144 to BR03
+#gi0/0/0/2 -  vlt_br/tag144 to BR047
+
+if (sys.argv[1]) in ['r07']:
+    subprocess.call(['python', 'util/qemu-xrv9k.py', 'r07.img', '07', 'r07'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_mgt_br', 'rtr07mgt1'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr07xr0', 'tag=143'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr07xr1', 'tag=144'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr07xr2', 'tag=145'])
 
 # r13 - Dallas CSR1kv LSR
 #g1 -  vlt_br/tag131 to r12 g7
