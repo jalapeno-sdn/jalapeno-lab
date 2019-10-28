@@ -1,0 +1,147 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "kubernetes.io/limit-ranger": "LimitRanger plugin set: cpu request for container kafka"
+        },
+        "creationTimestamp": "2019-04-26T22:57:29Z",
+        "generateName": "kafka-69955c4974-",
+        "labels": {
+            "app": "kafka",
+            "pod-template-hash": "2551170530"
+        },
+        "name": "kafka-69955c4974-2dh66",
+        "namespace": "default",
+        "ownerReferences": [
+            {
+                "apiVersion": "apps/v1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "ReplicaSet",
+                "name": "kafka-69955c4974",
+                "uid": "fe2adc03-6869-11e9-ae3f-42010a8a01c7"
+            }
+        ],
+        "resourceVersion": "46710719",
+        "selfLink": "/api/v1/namespaces/default/pods/kafka-69955c4974-2dh66",
+        "uid": "aaf79111-6876-11e9-ae3f-42010a8a01c7"
+    },
+    "spec": {
+        "containers": [
+            {
+                "image": "solsson/kafka:0.11.0.0",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "kafka",
+                "resources": {
+                    "requests": {
+                        "cpu": "100m"
+                    }
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "default-token-kpx6f",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "nodeName": "gke-voltron-default-pool-1a890d1e-hdxl",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "default-token-kpx6f",
+                "secret": {
+                    "defaultMode": 420,
+                    "secretName": "default-token-kpx6f"
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-04-26T22:58:44Z",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-10-28T15:08:39Z",
+                "message": "containers with unready status: [kafka]",
+                "reason": "ContainersNotReady",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": null,
+                "message": "containers with unready status: [kafka]",
+                "reason": "ContainersNotReady",
+                "status": "False",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-04-26T22:58:44Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "docker://ecce06f6c978b92623b5ad6a9ce0845cf2e02de3fb86163a34e710c756dd9761",
+                "image": "solsson/kafka:0.11.0.0",
+                "imageID": "docker-pullable://solsson/kafka@sha256:b27560de08d30ebf96d12e74f80afcaca503ad4ca3103e63b1fd43a2e4c976ce",
+                "lastState": {
+                    "terminated": {
+                        "containerID": "docker://ecce06f6c978b92623b5ad6a9ce0845cf2e02de3fb86163a34e710c756dd9761",
+                        "exitCode": 0,
+                        "finishedAt": "2019-10-28T15:34:26Z",
+                        "reason": "Completed",
+                        "startedAt": "2019-10-28T15:34:26Z"
+                    }
+                },
+                "name": "kafka",
+                "ready": false,
+                "restartCount": 51943,
+                "state": {
+                    "waiting": {
+                        "message": "Back-off 5m0s restarting failed container=kafka pod=kafka-69955c4974-2dh66_default(aaf79111-6876-11e9-ae3f-42010a8a01c7)",
+                        "reason": "CrashLoopBackOff"
+                    }
+                }
+            }
+        ],
+        "hostIP": "10.138.0.4",
+        "phase": "Running",
+        "podIP": "10.40.2.47",
+        "qosClass": "Burstable",
+        "startTime": "2019-04-26T22:58:44Z"
+    }
+}

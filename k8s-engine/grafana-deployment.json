@@ -1,0 +1,134 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "kubernetes.io/limit-ranger": "LimitRanger plugin set: cpu request for container grafana"
+        },
+        "creationTimestamp": "2019-04-26T21:10:15Z",
+        "generateName": "grafana-deployment-7d76946db8-",
+        "labels": {
+            "app": "grafana-deployment",
+            "pod-template-hash": "3832502864"
+        },
+        "name": "grafana-deployment-7d76946db8-hbx5t",
+        "namespace": "default",
+        "ownerReferences": [
+            {
+                "apiVersion": "apps/v1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "ReplicaSet",
+                "name": "grafana-deployment-7d76946db8",
+                "uid": "afe85a9e-6867-11e9-ae3f-42010a8a01c7"
+            }
+        ],
+        "resourceVersion": "34797",
+        "selfLink": "/api/v1/namespaces/default/pods/grafana-deployment-7d76946db8-hbx5t",
+        "uid": "afee5a25-6867-11e9-ae3f-42010a8a01c7"
+    },
+    "spec": {
+        "containers": [
+            {
+                "image": "grafana/grafana:5.0.4",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "grafana",
+                "resources": {
+                    "requests": {
+                        "cpu": "100m"
+                    }
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "default-token-kpx6f",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "nodeName": "gke-voltron-default-pool-1a890d1e-9ngg",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "default-token-kpx6f",
+                "secret": {
+                    "defaultMode": 420,
+                    "secretName": "default-token-kpx6f"
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-04-26T21:10:15Z",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-04-26T21:10:31Z",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": null,
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-04-26T21:10:15Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "docker://30de53cd6761343fe34a6a7a356e25684944f313a546b19b33f8b16d302c70ac",
+                "image": "grafana/grafana:5.0.4",
+                "imageID": "docker-pullable://grafana/grafana@sha256:9c66c7c01a6bf56023126a0b6f933f4966e8ee795c5f76fa2ad81b3c6dadc1c9",
+                "lastState": {},
+                "name": "grafana",
+                "ready": true,
+                "restartCount": 0,
+                "state": {
+                    "running": {
+                        "startedAt": "2019-04-26T21:10:31Z"
+                    }
+                }
+            }
+        ],
+        "hostIP": "10.138.0.2",
+        "phase": "Running",
+        "podIP": "10.40.1.25",
+        "qosClass": "Burstable",
+        "startTime": "2019-04-26T21:10:15Z"
+    }
+}
