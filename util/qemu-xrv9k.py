@@ -50,4 +50,5 @@ subprocess.call(['ifconfig', 'rtr%sxr4' %(sys.argv[2]), 'up'])
 subprocess.call(['ifconfig', 'rtr%sxr5' %(sys.argv[2]), 'up'])
 subprocess.call(['ifconfig', 'rtr%sxr6' %(sys.argv[2]), 'up'])
 subprocess.call(['ifconfig', 'rtr%sxr7' %(sys.argv[2]), 'up'])
-
+subprocess.call(['ifconfig', 'rtr%sxr8' %(sys.argv[2]), 'up'])
+subprocess.call(['ifconfig', 'rtr%sxr9' %(sys.argv[2]), 'up'])
