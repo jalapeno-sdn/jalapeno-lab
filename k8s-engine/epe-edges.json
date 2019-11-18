@@ -1,0 +1,138 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "kubernetes.io/limit-ranger": "LimitRanger plugin set: cpu request for container epe-edges"
+        },
+        "creationTimestamp": "2019-04-26T21:06:03Z",
+        "generateName": "epe-edges-collector-748fc46b4d-",
+        "labels": {
+            "app": "epe-edges-collector",
+            "pod-template-hash": "3049702608"
+        },
+        "name": "epe-edges-collector-748fc46b4d-28xzp",
+        "namespace": "default",
+        "ownerReferences": [
+            {
+                "apiVersion": "apps/v1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "ReplicaSet",
+                "name": "epe-edges-collector-748fc46b4d",
+                "uid": "19cfd15b-6867-11e9-ae3f-42010a8a01c7"
+            }
+        ],
+        "resourceVersion": "46710612",
+        "selfLink": "/api/v1/namespaces/default/pods/epe-edges-collector-748fc46b4d-28xzp",
+        "uid": "19d35e28-6867-11e9-ae3f-42010a8a01c7"
+    },
+    "spec": {
+        "containers": [
+            {
+                "image": "ievoltron/epe-edges:2.0",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "epe-edges",
+                "resources": {
+                    "requests": {
+                        "cpu": "100m"
+                    }
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "default-token-kpx6f",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "nodeName": "gke-voltron-default-pool-1a890d1e-6bkv",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "default-token-kpx6f",
+                "secret": {
+                    "defaultMode": 420,
+                    "secretName": "default-token-kpx6f"
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-04-26T21:06:03Z",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-04-26T21:06:03Z",
+                "message": "containers with unready status: [epe-edges]",
+                "reason": "ContainersNotReady",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": null,
+                "message": "containers with unready status: [epe-edges]",
+                "reason": "ContainersNotReady",
+                "status": "False",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2019-04-26T21:06:03Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "image": "ievoltron/epe-edges:2.0",
+                "imageID": "",
+                "lastState": {},
+                "name": "epe-edges",
+                "ready": false,
+                "restartCount": 0,
+                "state": {
+                    "waiting": {
+                        "message": "Back-off pulling image \"ievoltron/epe-edges:2.0\"",
+                        "reason": "ImagePullBackOff"
+                    }
+                }
+            }
+        ],
+        "hostIP": "10.138.0.3",
+        "phase": "Pending",
+        "podIP": "10.40.0.14",
+        "qosClass": "Burstable",
+        "startTime": "2019-04-26T21:06:03Z"
+    }
+}

@@ -454,6 +454,85 @@ if (sys.argv[1]) in ['lxc21']:
 if (sys.argv[1]) in ['lxc22']:
     subprocess.call(['lxc-start', '-n', 'lxc22']) 
 
+##############################
+# Amazon DMVPN
+
+# r50 - corp site a R50
+#g1 -  vlt_outside_br
+#g2 -  vlt_br/tag500 to r51 g2
+#g3 -  vlt_br/tag505 to r55 g2
+#g4 -  vlt_mgt_br
+if (sys.argv[1]) in ['r50']:
+    subprocess.call(['virsh', 'start', 'r50'])
+
+# r51 - small pop RR51
+#g1 -  vlt_outside_br
+#g2 -  vlt_br/tag500 to r50 g2
+#g3 -  vlt_br/tag501 to r52 g2
+#g4 -  vlt_mgt_br
+if (sys.argv[1]) in ['r51']:
+    subprocess.call(['virsh', 'start', 'r51'])
+
+# r52 - AWS PE R52
+#g1 -  vlt_outside_br
+#g2 -  vlt_br/tag501 to r51 g3
+#g3 -  vlt_br/tag502 to r53 g2
+#g4 -  vlt_mgt_br
+if (sys.argv[1]) in ['r52']:
+    subprocess.call(['virsh', 'start', 'r52'])
+
+# r53 - AWS PE53
+#g1 -  vlt_outside_br
+#g2 -  vlt_br/tag502 to r52 g3 
+#g3 -  vlt_br/tag503 to r56 g2
+#g4 -  vlt_mgt_br
+#g5 -  vlt_br/tag509 to r58 g5
+if (sys.argv[1]) in ['r53']:
+    subprocess.call(['virsh', 'start', 'r53'])
+
+# r56 - lg pop R56
+#g1 -  vlt_outside_br
+#g2 -  vlt_br/tag503 to r53 g3 
+#g3 -  vlt_br/tag504 to r54 g2
+#g4 -  vlt_mgt_br
+#g5 -  vlt_br/tag510 to r57 g5
+if (sys.argv[1]) in ['r56']:
+    subprocess.call(['virsh', 'start', 'r56'])
+
+# r54 - DC R54
+#g1 -  vlt_outside_br
+#g2 -  vlt_br/tag504 to r56 g3
+#g3 -  vlt_br/tag508 to r58 g3
+#g4 -  vlt_mgt_br
+if (sys.argv[1]) in ['r54']:
+    subprocess.call(['virsh', 'start', 'r54'])
+
+# r55 - AWS PE55
+#g1 -  vlt_outside_br
+#g2 -  vlt_br/tag505 to r50 g3
+#g3 -  vlt_br/tag506 to r57 g2
+#g4 -  vlt_mgt_br
+if (sys.argv[1]) in ['r55']:
+    subprocess.call(['virsh', 'start', 'r55'])
+
+# r57 - AWS PE57
+#g1 -  vlt_outside_br
+#g2 -  vlt_br/tag506 to r55 g3 
+#g3 -  vlt_br/tag507 to r58 g2
+#g4 -  vlt_mgt_br
+#g5 -  vlt_br/tag510 to r56 g5
+if (sys.argv[1]) in ['r57']:
+    subprocess.call(['virsh', 'start', 'r57'])
+
+# r58 - lg pop R58
+#g1 -  vlt_outside_br
+#g2 -  vlt_br/tag507 to r57 g3 
+#g3 -  vlt_br/tag508 to r54 g3
+#g4 -  vlt_mgt_br
+#g5 -  vlt_br/tag509 to r53 g5
+if (sys.argv[1]) in ['r58']:
+    subprocess.call(['virsh', 'start', 'r58'])
+
 ############################
 print "node started"
 
