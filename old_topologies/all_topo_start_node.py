@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# This script starts routers in the Voltron demo topology - see .png file.  Interface/vswitch values are hardcoded 
+# This script starts routers in the Jalapeno demo topology - see .png file.  Interface/vswitch values are hardcoded 
 # into this script based on the topology file, however, if the user wishes to modify the topology they may do so by
 # changing the ovs-vsctl command values below
 
@@ -10,7 +10,7 @@ import sys
 import time
 import subprocess
 
-# example:  sudo ./start_router.py r0
+# example:  sudo ./sm_topo_start_node.py r00
 
 #################################################################################
 # Base Topology: Chicago

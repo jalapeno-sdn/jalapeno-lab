@@ -36,6 +36,7 @@ if (sys.argv[1]) in ['r00']:
 #gi0/0/0/3 - vlt_br/tag108 to r08 g1
 #gi0/0/0/4 - vlt_br/tag110 to r03 g1
 #gi0/0/0/5 - vlt_br/tag121 to r10 g0
+#gi0/0/0/6 - vlt_br/tag124 to r70 g0
 #gi0/0/0/9 - vlt_scapy 
 
 if (sys.argv[1]) in ['r01']:
@@ -47,6 +48,7 @@ if (sys.argv[1]) in ['r01']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr01xr3', 'tag=108'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr01xr4', 'tag=110'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr01xr5', 'tag=121'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr01xr6', 'tag=124'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_scapy', 'rtr01xr9'])
 
 # r02
@@ -55,6 +57,7 @@ if (sys.argv[1]) in ['r01']:
 #gi0/0/0/2 - vlt_br/tag107 to r07 g1
 #gi0/0/0/3 - vlt_br/tag109 to r08 g0
 #gi0/0/0/4 - vlt_br/tag111 to r03 g0
+#gi0/0/0/5 - vlt_br/tag125 to r70 g1
 #gi0/0/0/9 - vlt_scapy 
 
 if (sys.argv[1]) in ['r02']:
@@ -65,6 +68,7 @@ if (sys.argv[1]) in ['r02']:
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr2', 'tag=107'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr3', 'tag=109'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr4', 'tag=111'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr02xr5', 'tag=125'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_scapy', 'rtr02xr9'])
 
 # r03
@@ -142,26 +146,28 @@ if (sys.argv[1]) in ['r07']:
 #gi0/0/0/0 -  vlt_br/tag109 to r02 g3
 #gi0/0/0/1 -  vlt_br/tag108 to r01 g3
 #gi0/0/0/2 -  vlt_br/tag115 to r09 g0
-
+#gi0/0/0/3 -  vlt_br/tag124 to sbezverk-02
 if (sys.argv[1]) in ['r08']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r08.img', '08', 'r08'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_mgt_br', 'rtr08mgt1'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr08xr0', 'tag=109'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr08xr1', 'tag=108'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr08xr2', 'tag=115'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr08xr3', 'tag=124'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_scapy', 'rtr08xr9'])
 
 # r09
 #gi0/0/0/0 -  vlt_br/tag115 to r08 g2
 #gi0/0/0/1 -  vlt_br/tag114 to r05 g1
 #gi0/0/0/2 -  vlt_edge to nsm01
-
+#gi0/0/0/3 -  vlt_edge to CE R63
 if (sys.argv[1]) in ['r09']:
     subprocess.call(['python', 'util/qemu-xrv9k.py', 'r09.img', '09', 'r09'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_mgt_br', 'rtr09mgt1'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr09xr0', 'tag=115'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr09xr1', 'tag=114'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_edge', 'rtr09xr2'])
+    subprocess.call(['ovs-vsctl', 'add-port', 'vlt_br', 'rtr09xr3', 'tag=123'])
     subprocess.call(['ovs-vsctl', 'add-port', 'vlt_scapy', 'rtr09xr9'])
 
 # r10
