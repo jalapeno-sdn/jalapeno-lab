@@ -1,21 +1,3 @@
-<!--
-
-********************************************************************************
-*                                                                              *
-* WARNING: THIS IS A TEMPLATE virsh XML file based on user inputs when the     *
-* included QCOW2 image was created.                                            *
-*                                                                              *
-* Changes to this xml configuration should be made using:                      *
-*   virsh edit <name>                                                          *
-* or other application using the libvirt API.                                  *
-*                                                                              *
-* This virsh XM was verified on CentOS release 6.6 (Final) and                 *
-* Ubuntu 14.04.3 LTS.                                                          *
-*                                                                              *
-********************************************************************************
-
--->
-
 
 <domain type='kvm' id='1' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
   <name>r02</name>
@@ -25,10 +7,6 @@
   <currentMemory unit='MB'>16384</currentMemory>
   <vcpu placement='static' cpuset="">4</vcpu>
   <cpu mode='host-passthrough'/>
-
-  <!-- HugeSection (for huge page support) -->
-
-  <!-- NumaSection (for numa support) -->
 
   <os>
     <type arch='x86_64' machine='pc'>hvm</type>
@@ -52,7 +30,7 @@
     <!-- HDA Disk -->
     <disk type='file' device='disk'>
      <driver name='qemu' type='qcow2'/>
-     <source file='/opt/images/voltron/r02.img'/>
+     <source file='/opt/images/jalapeno/r02.img'/>
      <target dev='vda' bus='virtio'/>
      <alias name='virtio-disk0'/>
     </disk>
@@ -110,10 +88,10 @@
 
     <!-- DataInterfaceSection (order: GIGE0, GIGE1 .. etc) -->
 
-    <!-- Data Interface 1 -->
+    <!-- Data Interface 0 -->
     <interface type='bridge'>
       <mac address='52:46:02:0E:EC:D1'/>
-      <source bridge='vlt_br1'/>
+      <source bridge='br2'/>
       <target dev='r02xr0'/>
       <model type='e1000'/>
       <driver >
@@ -121,10 +99,10 @@
       <alias name='r02xr0'/>
     </interface>
 
-    <!-- Data Interface 2 -->
+    <!-- Data Interface 1 -->
     <interface type='bridge'>
       <mac address='52:46:02:B7:06:3B'/>
-      <source bridge='vlt_br2'/>
+      <source bridge='br4'/>
       <target dev='r02xr1'/>
       <model type='e1000'/>
       <driver >
@@ -132,10 +110,10 @@
       <alias name='r02xr1'/>
     </interface>
 
-    <!-- Data Interface 3 -->
+    <!-- Data Interface 2 -->
     <interface type='bridge'>
       <mac address='52:46:02:3C:EA:D4'/>
-      <source bridge='vlt_br'/>
+      <source bridge='br6'/>
       <target dev='r02xr2'/>
       <model type='e1000'/>
       <driver >
@@ -143,10 +121,10 @@
       <alias name='r02xr2'/>
     </interface>
 
-    <!-- Data Interface 4 -->
+    <!-- Data Interface 3 -->
     <interface type='bridge'>
       <mac address='52:46:02:3C:EA:D5'/>
-      <source bridge='vlt_br4'/>
+      <source bridge='br99'/>
       <target dev='r02xr3'/>
       <model type='e1000'/>
       <driver >
