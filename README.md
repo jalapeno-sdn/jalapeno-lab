@@ -11,9 +11,9 @@
 
 4. Get your server's outside eth interface name.  Edit vlt_build_testbed_from_scratch.sh and replace <server outside interface> with the interface name. Uncomment the iptables masquerade line
 
-5. cd into util/ and run build_testbed_from_scratch.sh
+5. cd into util/ and run util/build_testbed_from_scratch.sh
 ...or...
-5a.  It may be better to manually execute the steps outlined in build_testbed_from_scratch.sh one-by-one
+5a.  It may be better to manually execute the steps outlined in util/build_testbed_from_scratch.sh one-by-one
 
 6. Once the script is complete, check the status of routers/vms, verify routes, etc:
     Example XR router console access:
