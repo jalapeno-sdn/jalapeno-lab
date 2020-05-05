@@ -26,6 +26,33 @@ qemu-img create -b  xrv9k-fullk9-x-7.2.1.32I.qcow2 -f qcow2 r03.img
 
 ```
 
-5. 
+5. Launch routers via either start_topology.sh script or manually:
+
+```
+sudo ./start_topology.sh
+```
+```
+sudo virsh define <router_name.xml>
+sudo brctl addbr <bridge_name in xml>
+sudo virsh start <router_name>
+```
+The script and the xml files wil build this topology:
+
+![Topology](topology.png "topology")
+
+6. Telnet to routers' console:
+```
+# R00 - R03
+telnet localhost 20000
+telnet localhost 20001
+telnet localhost 20002
+telnet localhost 20003
+```
+
+7. Configure routers once they've fully booted
+
+Other useful commands:
+
+
 
 
