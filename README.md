@@ -1,4 +1,4 @@
-### voltron-testbed
+### Jalapeno XRv topology builder
 
 1. Requirements: 
     * ubuntu 18.04, minimum 16 vCPU, 96GB memory, 200GB disk
