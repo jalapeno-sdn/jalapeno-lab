@@ -46,12 +46,12 @@
     <interface type='bridge'>
       <target dev='r71ge1'/>
       <mac address='00:99:71:00:bc:a2'/>
-      <source bridge='vlt_br'/>
+      <source bridge='jlpn_br'/>
       <virtualport type='openvswitch'>
         <parameters interfaceid='9ef0e7de-11ec-4ac8-892c-e22303b65800'/>
       </virtualport>
       <vlan>
-        <tag id='116'/>
+        <tag id='109'/>
       </vlan>
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
@@ -59,12 +59,12 @@
     <interface type='bridge'>
       <target dev='r71ge2'/>
       <mac address='00:99:71:01:bc:a3'/>
-      <source bridge='vlt_br'/>
+      <source bridge='jlpn_br'/>
       <virtualport type='openvswitch'>
         <parameters interfaceid='3d021e2e-11a7-47e3-b2c9-1a72c92f1201'/>
       </virtualport>
       <vlan>
-        <tag id='118'/>
+        <tag id='110'/>
       </vlan>
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
