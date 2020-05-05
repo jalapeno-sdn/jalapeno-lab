@@ -1,0 +1,177 @@
+
+<domain type='kvm' id='1' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+  <name>r02</name>
+  <uuid>6bfad460-a902-43de-8ae6-c858a5b8d73f</uuid>
+  <title>com.cisco.ios-xrv9000</title>
+  <memory unit='MB'>16384</memory>
+  <currentMemory unit='MB'>16384</currentMemory>
+  <vcpu placement='static'>4</vcpu>
+  <cpu mode='host-passthrough'/>
+
+  <os>
+    <type arch='x86_64' machine='pc'>hvm</type>
+    <boot dev='hd'/>
+    <bootmenu enable='yes'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <pae/>
+  </features>
+  <clock offset='utc'/>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>restart</on_crash>
+  <devices>
+    <emulator>/usr/bin/kvm</emulator>
+
+    <!-- DiskSection -->
+
+    <!-- HDA Disk -->
+    <disk type='file' device='disk'>
+     <driver name='qemu' type='qcow2'/>
+     <source file='/opt/images/jalapeno/r02.img'/>
+     <target dev='vda' bus='virtio'/>
+     <alias name='virtio-disk0'/>
+    </disk>
+
+    <controller type='ide' index='0'>
+      <alias name='ide0'/>
+    </controller>
+
+    <!-- HostInterfaceSection (order: mgmt/ha/development) -->
+
+    <!-- Host Interface 1 -->
+    <interface type='bridge'>
+      <mac address='52:46:02:9B:22:D1'/>
+      <source bridge='virbr0'/>
+      <target dev='r02mgt0'/>
+      <model type='virtio'/>
+      <driver name='qemu'>
+      <!-- Uncomment the below to enable -->
+      <!--host  csum='off' /-->
+      <!-- Uncomment the below to enable -->
+      <!-- guest  csum='off' /-->
+      </driver>
+      <alias name='r02mgt0'/>
+    </interface>
+
+    <!-- Host Interface 2 -->
+    <interface type='bridge'>
+      <mac address='52:46:02:B4:EE:CA'/>
+      <source bridge='virbr0'/>
+      <target dev='r02mgt1'/>
+      <model type='virtio'/>
+      <driver name='qemu'>
+      <!-- Uncomment the below to enable -->
+      <!--host  csum='off' /-->
+      <!-- Uncomment the below to enable -->
+      <!-- guest  csum='off' /-->
+      </driver>
+      <alias name='r02mgt1'/>
+    </interface>
+
+    <!-- Host Interface 3 -->
+    <interface type='bridge'>
+      <mac address='52:46:02:32:1D:76'/>
+      <source bridge='virbr0'/>
+      <target dev='r02mgt2'/>
+      <model type='virtio'/>
+      <driver name='qemu'>
+      <!-- Uncomment the below to enable -->
+      <!--host  csum='off' /-->
+      <!-- Uncomment the below to enable -->
+      <!-- guest  csum='off' /-->
+      </driver>
+      <alias name='r02mgt2'/>
+    </interface>
+
+    <!-- DataInterfaceSection (order: GIGE0, GIGE1 .. etc) -->
+
+    <!-- Data Interface 0 -->
+    <interface type='bridge'>
+      <mac address='52:46:02:0E:EC:D1'/>
+      <source bridge='br2'/>
+      <target dev='r02xr0'/>
+      <model type='e1000'/>
+      <driver >
+      </driver>
+      <alias name='r02xr0'/>
+    </interface>
+
+    <!-- Data Interface 1 -->
+    <interface type='bridge'>
+      <mac address='52:46:02:B7:06:3B'/>
+      <source bridge='br4'/>
+      <target dev='r02xr1'/>
+      <model type='e1000'/>
+      <driver >
+      </driver>
+      <alias name='r02xr1'/>
+    </interface>
+
+    <!-- Data Interface 2 -->
+    <interface type='bridge'>
+      <mac address='52:46:02:3C:EA:D4'/>
+      <source bridge='br6'/>
+      <target dev='r02xr2'/>
+      <model type='e1000'/>
+      <driver >
+      </driver>
+      <alias name='r02xr2'/>
+    </interface>
+
+    <!-- Data Interface 3 -->
+    <interface type='bridge'>
+      <mac address='52:46:02:3C:EA:D5'/>
+      <source bridge='br99'/>
+      <target dev='r02xr3'/>
+      <model type='e1000'/>
+      <driver >
+      </driver>
+    </interface>
+
+    <!-- SerialPortSection -->
+    <!-- Use the following to view or create serial ports: -->
+    <!--   virsh qemu-monitor-command  -hmp "info chardev" -->
+
+    <!-- Access: XR Console (telnet localhost 10164) -->
+    <serial type='tcp'>
+       <source mode="bind" host="0.0.0.0" service="20020"/>
+       <protocol type="telnet"/>
+       <target port="0"/>
+    </serial>
+    <!-- Access: XR Aux (telnet localhost 16067) -->
+    <serial type='tcp'>
+       <source mode="bind" host="0.0.0.0" service="20021"/>
+       <protocol type="telnet"/>
+       <target port="1"/>
+    </serial>
+    <!-- Access: Admin / Calvados (telnet localhost 11076) -->
+    <serial type='tcp'>
+       <source mode="bind" host="0.0.0.0" service="20022"/>
+       <protocol type="telnet"/>
+       <target port="2"/>
+    </serial>
+    <!-- Access: HOST VM (telnet localhost 11618)  -->
+    <serial type='tcp'>
+       <source mode="bind" host="0.0.0.0" service="20023"/>
+       <protocol type="telnet"/>
+       <target port="3"/>
+    </serial>
+
+  <!-- virsh console instead of telnet for first serial port -->
+  <!-- <console type='pty'> -->
+  <!--  <target type='serial' port='0'/> -->
+  <!-- </console> -->
+
+  </devices>
+  <qemu:commandline>
+     <!-- Add extra monitor port for the virsh monitor tab -->
+     <qemu:arg value='-chardev'/>
+     <qemu:arg value='socket,id=monitor0,host=0.0.0.0,port=15402,ipv4,server,nowait,telnet'/>
+     <qemu:arg value='-monitor'/>
+     <qemu:arg value='chardev:monitor0'/>
+     <!-- OptionalArgs -->
+  </qemu:commandline>
+</domain>

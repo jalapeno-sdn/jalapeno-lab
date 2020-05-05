@@ -5,7 +5,7 @@
   <title>com.cisco.ios-xrv9000</title>
   <memory unit='MB'>16384</memory>
   <currentMemory unit='MB'>16384</currentMemory>
-  <vcpu placement='static' cpuset="">4</vcpu>
+  <vcpu placement='static'>4</vcpu>
   <cpu mode='host-passthrough'/>
 
   <os>
