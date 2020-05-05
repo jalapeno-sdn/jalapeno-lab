@@ -9,23 +9,23 @@
 
 3. Clone this archive
 
-4. Get your server's outside eth interface name.  Edit vlt_build_testbed_from_scratch.sh and replace <server outside interface> with the interface name. Uncomment the iptables masquerade line
+4. Construct router images
+```
+# May require sudo:
 
-5. cd into util/ and run util/build_testbed_from_scratch.sh
-...or...
-5a.  It may be better to manually execute the steps outlined in util/build_testbed_from_scratch.sh one-by-one
+mkdir /opt/images/jalapeno
+mv <image_name.qcow2> /opt/images/jalapeno/
+cd /opt/images/jalapeno/
 
-6. Once the script is complete, check the status of routers/vms, verify routes, etc:
-    Example XR router console access:
-    R00 -> telnet localhost 20000
-    R05 -> telnet localhost 20050
-    Example CSR router console access:
-    sudo virsh console r71
+# Create .img files from qcow2
 
-Optional:
+qemu-img create -b  xrv9k-fullk9-x-7.2.1.32I.qcow2 -f qcow2 r00.img
+qemu-img create -b  xrv9k-fullk9-x-7.2.1.32I.qcow2 -f qcow2 r01.img
+qemu-img create -b  xrv9k-fullk9-x-7.2.1.32I.qcow2 -f qcow2 r02.img
+qemu-img create -b  xrv9k-fullk9-x-7.2.1.32I.qcow2 -f qcow2 r03.img
 
-7. Add latencies to the topology. Examples:
-sudo tc qdisc add dev r71ge1 root netem delay 120000 <br>
-sudo tc qdisc add dev r71ge2 root netem delay 150000 <br>
-sudo tc qdisc add dev r72ge1 root netem delay 180000 <br>
-sudo tc qdisc add dev r72ge2 root netem delay 210000 <br>
+```
+
+5. 
+
+
