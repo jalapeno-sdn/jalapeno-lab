@@ -88,7 +88,7 @@
 
     <!-- DataInterfaceSection (order: GIGE0, GIGE1 .. etc) -->
 
-    <!-- Data Interface 1 -->
+    <!-- Data Interface 0 -->
     <interface type='bridge'>
       <mac address='52:46:01:0E:EC:D1'/>
       <source bridge='br0'/>
@@ -99,10 +99,10 @@
       <alias name='r01xr0'/>
     </interface>
 
-    <!-- Data Interface 2 -->
+    <!-- Data Interface 1 -->
     <interface type='bridge'>
       <mac address='52:46:01:B7:06:3B'/>
-      <source bridge='br2'/>
+      <source bridge='br4'/>
       <target dev='r01xr1'/>
       <model type='e1000'/>
       <driver >
@@ -110,11 +110,22 @@
       <alias name='r01xr1'/>
     </interface>
 
-    <!-- Data Interface 3 -->
+    <!-- Data Interface 2 -->
     <interface type='bridge'>
       <mac address='52:46:01:3C:EA:D4'/>
-      <source bridge='br4'/>
+      <source bridge='br5'/>
       <target dev='r01xr2'/>
+      <model type='e1000'/>
+      <driver >
+      </driver>
+      <alias name='r01xr2'/>
+    </interface>
+    
+    <!-- Data Interface 3 -->
+    <interface type='bridge'>
+      <mac address='52:46:01:3C:E3:D3'/>
+      <source bridge='br99'/>
+      <target dev='r01xr3'/>
       <model type='e1000'/>
       <driver >
       </driver>
