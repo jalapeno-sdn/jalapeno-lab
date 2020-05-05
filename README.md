@@ -40,7 +40,7 @@ The script and the xml files wil build this topology:
 
 ![Topology](topology.png "topology")
 
-6. Telnet to router console port:
+6. Wait a while then Telnet to router console port:
 ```
 # R00 - R03
 telnet localhost 20000
