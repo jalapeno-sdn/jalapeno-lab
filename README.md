@@ -4,8 +4,8 @@
     * ubuntu 18.04, minimum 16 vCPU, 96GB memory, 200GB disk
 
 2. Required packages:
-    * apt-get install openssh-server lxc lxd-client qemu qemu-kvm libvirt-bin openvswitch-switch python-pip git
-    * optional: apt-get install virt-manager kafkacat
+    * openssh-server qemu qemu-kvm libvirt-bin
+    * optional: virt-manager
 
 3. Clone this archive
 
