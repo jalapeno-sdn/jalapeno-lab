@@ -7,7 +7,7 @@
     * apt-get install openssh-server lxc lxd-client qemu qemu-kvm libvirt-bin openvswitch-switch python-pip git
     * optional: apt-get install virt-manager kafkacat
 
-3. Clone this archive into /opt
+3. Clone this archive
 
 4. Get your server's outside eth interface name.  Edit vlt_build_testbed_from_scratch.sh and replace <server outside interface> with the interface name. Uncomment the iptables masquerade line
 
