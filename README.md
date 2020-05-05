@@ -40,7 +40,7 @@ The script and the xml files wil build this topology:
 
 ![Topology](topology.png "topology")
 
-6. Telnet to routers' console:
+6. Telnet to router console port:
 ```
 # R00 - R03
 telnet localhost 20000
@@ -49,9 +49,7 @@ telnet localhost 20002
 telnet localhost 20003
 ```
 
-7. Configure routers once they've fully booted
-
-Other useful commands:
+7. Configure routers once they've fully booted - note the management interfaces have been placed in virbr0 so they may be configured for DHCP
 
 
 
