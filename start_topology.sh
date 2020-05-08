@@ -17,20 +17,28 @@ virsh define r03.xml
 sleep 1
 echo 'adding briges'
 brctl addbr br0
+ifconfig br0 up
 echo 'brctl addbr br0'
 brctl addbr br1
+ifconfig br1 up
 echo 'brctl addbr br1'
 brctl addbr br2
+ifconfig br2 up
 echo 'brctl addbr br2'
 brctl addbr br3
+ifconfig br3 up
 echo 'brctl addbr br3'
 brctl addbr br4
+ifconfig br4 up
 echo 'brctl addbr br4'
 brctl addbr br5
+ifconfig br5 up
 echo 'brctl addbr br5'
 brctl addbr br6
+ifconfig br6 up
 echo 'brctl addbr br6'
 brctl addbr br7
+ifconfig br7 up
 echo 'brctl addbr br7'
 brctl addbr br99
 
