@@ -51,6 +51,14 @@ telnet localhost 20003
 
 7. Configure routers once they've fully booted - note the management interfaces have been placed in virbr0 so they may be configured for DHCP
 
+8. Install Jalapeno Microk8s package on your server/host: https://github.com/cisco-ie/jalapeno/blob/master/Getting-Started.md
+
+9. Create an ip link on your server/host to connect to R03, which will allow routers to communicate with Jalapeno and vice versa:
+```
+ip addr add 10.0.254.1/24 dev br7
+ifconfig br7 up
+ip route add 10.0.0.0/24 via 10.0.254.2 dev br7
+```
 
 
 
