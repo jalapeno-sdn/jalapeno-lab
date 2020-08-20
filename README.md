@@ -44,9 +44,9 @@ The script and the xml files wil build this topology:
 ```
 # R00 - R03
 telnet localhost 20000
-telnet localhost 20001
-telnet localhost 20002
-telnet localhost 20003
+telnet localhost 20010
+telnet localhost 20020
+telnet localhost 20030
 ```
 
 7. Configure routers once they've fully booted - note the management interfaces have been placed in virbr0 so they may be configured for DHCP
