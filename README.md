@@ -36,7 +36,7 @@ sudo virsh define <router_name.xml>
 sudo brctl addbr <bridge_name in xml>
 sudo virsh start <router_name>
 ```
-The script and the xml files wil build this topology:
+The script and the xml files wil build R00 - R03 in this reference topology:
 
 ![Topology](topology.png "topology")
 
