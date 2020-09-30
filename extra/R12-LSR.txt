@@ -295,15 +295,6 @@ router isis 100
   !       
  !
 !
-router ospf 200
- distribute link-state
- router-id 10.0.0.12
- area 0.0.0.0
-  interface GigabitEthernet0/0/0/5
-   network point-to-point
-  !
- !
-!
 router bgp 65000
  bgp router-id 10.0.0.12
  bgp bestpath as-path multipath-relax
