@@ -1,0 +1,324 @@
+hostname R13-PR
+clock timezone PST America/Los_Angeles
+domain name-server 8.8.8.8
+username cisco
+ group root-lr
+ group cisco-support
+ secret 10 $6$LTfbQ1ru7rSmBQ1.$cTRB1eOU1UsTjPYP0pAJIQqvTzu9zSj6gl0b5FGt0MLH2YnRLWQ8mJ.yjhwQzkswGOvBKgwVMngC6.UWLd4.z0
+ password 7 15470A5952307F200535660A460D0631
+!
+username cisco-ie
+ group root-lr
+ group cisco-support
+ secret 10 $6$Ec3vhOlS9gr0h...$.PLdtlGpucFH5fDKad1rwflFZHzqG8OLw0qn4xC.aASssRwBBeOVTvpFQJIi2MMQPwRa49DL3mvSUZHU78vtn0
+!
+grpc
+ port 57400
+ no-tls
+!
+telemetry model-driven
+ destination-group jalapeno
+  address-family ipv4 10.251.251.1 port 32400
+   encoding self-describing-gpb
+   protocol grpc no-tls
+  !
+ !
+ sensor-group cisco_models
+  sensor-path Cisco-IOS-XR-pfi-im-cmd-oper:interfaces/interface-xr/interface
+  sensor-path Cisco-IOS-XR-fib-common-oper:mpls-forwarding/nodes/node/label-fib/forwarding-details/forwarding-detail
+ !
+ sensor-group openconfig_interfaces
+  sensor-path openconfig-interfaces:interfaces/interface
+ !
+ subscription base_metrics
+  sensor-group-id cisco_models sample-interval 10000
+  sensor-group-id openconfig_interfaces sample-interval 10000
+  destination-id jalapeno
+  source-interface Loopback0
+ !
+!
+vrf carrots
+ address-family ipv4 unicast
+  import route-target
+   500:500
+   501:501
+  !
+  export route-target
+   500:500
+   501:501
+  !
+ !
+!
+tpa
+ vrf default
+  address-family ipv4
+   update-source dataports GigabitEthernet0/0/0/2
+  !
+ !
+!
+call-home
+ service active
+ contact smart-licensing
+ profile CiscoTAC-1
+  active
+  destination transport-method http
+ !
+!
+netconf-yang agent
+ ssh
+!
+ipv4 access-list block-ssh
+ 10 deny tcp any eq ssh host 198.62.154.6
+ 15 deny tcp any eq ssh host 198.62.154.16
+ 20 permit ipv4 any any
+!
+interface Loopback0
+ ipv4 address 10.0.0.13 255.255.255.255
+ ipv6 address 2001:420:ffff:1013::1/128
+!
+interface Loopback500
+ vrf carrots
+ ipv4 address 50.50.13.1 255.255.255.0
+!
+interface MgmtEth0/RP0/CPU0/0
+ description mgt  
+ ipv4 address 10.251.251.113 255.255.255.0
+!
+interface GigabitEthernet0/0/0/0
+ description to R11-LSR
+ ipv4 address 10.1.1.5 255.255.255.254
+ ipv6 address 2001:420:ffff:1::5/127
+!
+interface GigabitEthernet0/0/0/1
+ description to R12-LSR
+ ipv4 address 10.1.1.7 255.255.255.254
+ ipv6 address 2001:420:ffff:1::7/127
+!
+interface GigabitEthernet0/0/0/2
+ description to Public-then-ISR
+ mtu 1460
+ ipv4 address 198.62.154.6 255.255.255.240
+ ipv6 address 2001:420:ffff::6/124
+!
+interface GigabitEthernet0/0/0/3
+ description to R15
+ ipv4 address 198.62.154.16 255.255.255.254
+ ipv6 address 2001:420:ffff::16/127
+ ipv4 access-group block-ssh ingress
+!
+interface GigabitEthernet0/0/0/4
+ shutdown
+!
+interface GigabitEthernet0/0/0/5
+ shutdown
+!
+interface GigabitEthernet0/0/0/6
+ shutdown
+!
+interface GigabitEthernet0/0/0/7
+ description 2nd link to R16
+ ipv4 address 10.1.1.129 255.255.255.254
+ ipv6 address 2001:420:ffff:1::129/127
+!
+interface GigabitEthernet0/0/0/8
+ shutdown
+!
+interface GigabitEthernet0/0/0/9
+ shutdown
+!
+route-policy SID($SID)
+  set label-index $SID
+end-policy
+!
+route-policy drop
+  drop
+end-policy
+!
+route-policy pass
+  pass
+end-policy
+!
+router static
+ address-family ipv4 unicast
+  0.0.0.0/0 198.62.154.1
+  198.62.154.131/32 198.62.154.2
+ !
+!
+router isis 100
+ is-type level-2-only
+ net 49.0901.0000.0000.0013.00
+ distribute link-state level 2
+ nsf ietf
+ address-family ipv4 unicast
+  metric-style wide
+  advertise link attributes
+  mpls traffic-eng level-2-only
+  mpls traffic-eng router-id Loopback0
+  maximum-paths 32
+  segment-routing mpls
+ !
+ address-family ipv6 unicast
+  metric-style wide
+  advertise link attributes
+  maximum-paths 32
+  segment-routing srv6
+   locator MAIN
+   !
+  !
+ !
+ interface Loopback0
+  passive
+  address-family ipv4 unicast
+   prefix-sid index 13
+   prefix-sid algorithm 128 index 10013
+   prefix-sid algorithm 129 index 20013
+  !
+  address-family ipv6 unicast
+  !
+ !
+ interface GigabitEthernet0/0/0/0
+  circuit-type level-2-only
+  point-to-point
+  address-family ipv4 unicast
+   fast-reroute per-prefix level 2
+   fast-reroute per-prefix ti-lfa
+   fast-reroute per-prefix ti-lfa level 2
+   metric 1
+  !
+  address-family ipv6 unicast
+   fast-reroute per-prefix level 2
+   fast-reroute per-prefix ti-lfa
+   fast-reroute per-prefix ti-lfa level 2
+   metric 1
+  !
+ !
+ interface GigabitEthernet0/0/0/1
+  circuit-type level-2-only
+  point-to-point
+  address-family ipv4 unicast
+   fast-reroute per-prefix level 2
+   fast-reroute per-prefix ti-lfa
+   fast-reroute per-prefix ti-lfa level 2
+   metric 1
+  !
+  address-family ipv6 unicast
+   fast-reroute per-prefix level 2
+   fast-reroute per-prefix ti-lfa
+   fast-reroute per-prefix ti-lfa level 2
+   metric 1
+  !
+ !
+ interface GigabitEthernet0/0/0/7
+  circuit-type level-2-only
+  point-to-point
+  address-family ipv4 unicast
+   fast-reroute per-prefix level 2
+   fast-reroute per-prefix ti-lfa
+   fast-reroute per-prefix ti-lfa level 2
+   metric 1
+  !
+  address-family ipv6 unicast
+   fast-reroute per-prefix level 2
+   fast-reroute per-prefix ti-lfa
+   fast-reroute per-prefix ti-lfa level 2
+   metric 1
+  !
+ !
+!
+router bgp 65000
+ bgp router-id 10.0.0.13
+ bgp bestpath as-path multipath-relax
+ address-family ipv4 unicast
+  additional-paths receive
+  maximum-paths ebgp 32
+  network 10.0.0.13/32
+  allocate-label all
+ !
+ address-family vpnv4 unicast
+ !
+ address-family ipv6 unicast
+  additional-paths receive
+  maximum-paths ebgp 32
+  network 2001:420:ffff:1013::1/128
+ !
+ address-family link-state link-state
+ !
+ address-family ipv4 sr-policy
+ !
+ neighbor 10.0.0.10
+  remote-as 65000
+  update-source Loopback0
+  address-family ipv4 unicast
+   route-policy drop in
+   next-hop-self
+  !
+  address-family ipv4 labeled-unicast
+   next-hop-self
+  !
+  address-family vpnv4 unicast
+   next-hop-self
+  !
+  address-family link-state link-state
+   route-policy pass out
+  !
+ !
+ neighbor 198.62.154.1
+  remote-as 54140
+  egress-engineering
+  address-family ipv4 unicast
+   route-policy pass in
+  !
+ !
+ neighbor 198.62.154.17
+  remote-as 54140
+  egress-engineering
+  bmp-activate server 1
+  address-family ipv4 unicast
+   route-policy pass in
+  !
+ !
+ neighbor 2001:420:ffff::1
+  remote-as 54140
+  address-family ipv6 unicast
+   route-policy pass in
+  !
+ !
+ vrf carrots
+  rd auto
+  address-family ipv4 unicast
+   redistribute connected
+  !
+ !
+!
+bmp server 1
+ host 198.62.154.4 port 30511
+ description jalapeno GoBMP
+ update-source Loopback0
+ flapping-delay 60
+ initial-delay 5
+ stats-reporting-period 60
+ initial-refresh delay 30 spread 2
+!
+segment-routing
+ global-block 100000 163999
+ srv6
+  encapsulation
+   source-address 2001:420:ffff:1013::1
+  !
+  locators
+   locator MAIN
+    prefix 2001:420:ffff:1013::/64
+   !
+  !
+ !
+!
+netconf agent tty
+!
+ssh server rate-limit 600
+ssh server session-limit 100
+ssh server v2
+ssh server vrf default
+ssh server netconf vrf default
+performance-measurement
+!
+end
