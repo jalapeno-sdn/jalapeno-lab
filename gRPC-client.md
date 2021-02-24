@@ -21,6 +21,25 @@ interface MgmtEth0/RP0/CPU0/0
  ipv4 address 10.200.99.51 255.255.255.0
  ipv6 address 2010:10:200:99::51/128
 
+// Verify gRPC server is running with TLS enabled:
+
+RP/0/RP0/CPU0:IE-5508-2#show grpc status
+Wed Feb 24 11:56:54.865 PST
+*************************show gRPC status**********************
+---------------------------------------------------------------
+transport                       :     grpc
+access-family                   :     tcp4
+TLS                             :     enabled
+trustpoint                      :     
+listening-port                  :     57400
+max-request-per-user            :     10
+max-request-total               :     128
+max-streams                     :     32
+max-streams-per-user            :     32
+vrf-socket-ns-path              :     MANAGEMENT
+_______________________________________________________________
+*************************End of showing status*****************
+
 ```
 
 2.  Configure and apply IPv6 ACL:
