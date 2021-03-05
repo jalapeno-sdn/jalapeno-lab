@@ -1,16 +1,12 @@
 hostname R08-ABR
 clock timezone PST America/Los_Angeles
-username cisco
- group root-lr
- group cisco-support
- secret 10 $6$It0060iU.W6U660.$i.3w732/K43vfvxWV1cuZWe0W0Enht8OaZz0w0FLW05wapeU5uGWk3.C9qdQlj5x2LpeV7Ne.d9BF8NrnzzEV.
 !
 grpc
  port 57400
 !
 telemetry model-driven
  destination-group jalapeno
-  address-family ipv4 198.62.154.4 port 32400
+  address-family ipv4 10.251.251.1 port 32400
    encoding self-describing-gpb
    protocol grpc no-tls
   !
@@ -57,7 +53,7 @@ netconf-yang agent
 !
 interface Loopback0
  ipv4 address 10.0.0.8 255.255.255.255
- ipv6 address 2001:420:ffff:1008::1/128
+ ipv6 address 2001:ABCD:ffff:1008::1/128
 !
 interface MgmtEth0/RP0/CPU0/0
  description mgt  
@@ -66,36 +62,36 @@ interface MgmtEth0/RP0/CPU0/0
 interface GigabitEthernet0/0/0/0
  description to R06
  ipv4 address 10.1.1.65 255.255.255.254
- ipv6 address 2001:420:ffff:1::65/127
+ ipv6 address 2001:ABCD:ffff:1::65/127
 !
 interface GigabitEthernet0/0/0/1
  description to R07
  ipv4 address 10.1.1.75 255.255.255.254
- ipv6 address 2001:420:ffff:1::75/127
+ ipv6 address 2001:ABCD:ffff:1::75/127
 !
 interface GigabitEthernet0/0/0/2
  description to R12
  mtu 1460
  ipv4 address 10.1.1.20 255.255.255.254
- ipv6 address 2001:420:ffff:1::20/127
+ ipv6 address 2001:ABCD:ffff:1::20/127
 !
 interface GigabitEthernet0/0/0/3
  description to R16
  mtu 1460
  ipv4 address 10.1.1.16 255.255.255.254
- ipv6 address 2001:420:ffff:1::16/127
+ ipv6 address 2001:ABCD:ffff:1::16/127
 !
 interface GigabitEthernet0/0/0/4
  description to R01
  mtu 1460
  ipv4 address 10.1.1.55 255.255.255.254
- ipv6 address 2001:420:ffff:1::55/127
+ ipv6 address 2001:ABCD:ffff:1::55/127
 !
 interface GigabitEthernet0/0/0/5
  description to R02
  mtu 1460
  ipv4 address 10.1.1.79 255.255.255.254
- ipv6 address 2001:420:ffff:1::79/127
+ ipv6 address 2001:ABCD:ffff:1::79/127
  shutdown
 !
 interface GigabitEthernet0/0/0/6
@@ -267,7 +263,7 @@ router bgp 65000
  address-family ipv6 unicast
   additional-paths receive
   maximum-paths ebgp 32
-  network 2001:420:ffff:1008::1/128
+  network 2001:ABCD:ffff:1008::1/128
  !
  address-family link-state link-state
  !
@@ -291,11 +287,11 @@ segment-routing
  global-block 100000 163999
  srv6
   encapsulation
-   source-address 2001:420:ffff:1008::1
+   source-address 2001:ABCD:ffff:1008::1
   !
   locators
    locator MAIN
-    prefix 2001:420:ffff:1008::/64
+    prefix 2001:ABCD:ffff:1008::/64
    !
   !
  !
