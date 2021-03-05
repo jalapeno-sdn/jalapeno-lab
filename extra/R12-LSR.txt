@@ -1,9 +1,5 @@
 hostname R12-LSR
 clock timezone PST America/Los_Angeles
-username cisco
- group root-lr
- group cisco-support
- secret 10 $6$ix3piTFh9Iv0i...$ugsbAuHPLiGVrEYmndFHvUtJxhp0nn6vKVJY2TIEk17FJF2Ls0JBek5RYM5pNWv2NdHtrzt2Ms3M1nB01w548/
 !
 grpc
  port 57400
@@ -76,7 +72,7 @@ netconf-yang agent
 !
 interface Loopback0
  ipv4 address 10.0.0.12 255.255.255.255
- ipv6 address 2001:420:ffff:1012::1/128
+ ipv6 address 2001:ABCD:ffff:1012::1/128
 !
 interface Loopback100
  vrf orange
@@ -94,41 +90,41 @@ interface GigabitEthernet0/0/0/0
  description to R03-LSR
  mtu 1460
  ipv4 address 10.1.1.13 255.255.255.254
- ipv6 address 2001:420:ffff:1::13/127
+ ipv6 address 2001:ABCD:ffff:1::13/127
 !
 interface GigabitEthernet0/0/0/1
  description to R04-LSR
  mtu 1460
  ipv4 address 10.1.1.15 255.255.255.254
- ipv6 address 2001:420:ffff:1::15/127
+ ipv6 address 2001:ABCD:ffff:1::15/127
 !
 interface GigabitEthernet0/0/0/2
  description to R08-LSR
  mtu 1460
  ipv4 address 10.1.1.21 255.255.255.254
- ipv6 address 2001:420:ffff:1::21/127
+ ipv6 address 2001:ABCD:ffff:1::21/127
  shutdown
 !
 interface GigabitEthernet0/0/0/3
  description to R09-LSR
  mtu 1460
  ipv4 address 10.1.1.23 255.255.255.254
- ipv6 address 2001:420:ffff:1::23/127
+ ipv6 address 2001:ABCD:ffff:1::23/127
 !
 interface GigabitEthernet0/0/0/4
  description to R13-PR
  ipv4 address 10.1.1.6 255.255.255.254
- ipv6 address 2001:420:ffff:1::6/127
+ ipv6 address 2001:ABCD:ffff:1::6/127
 !
 interface GigabitEthernet0/0/0/5
  description to R14-PR
  ipv4 address 10.1.1.2 255.255.255.254
- ipv6 address 2001:420:ffff:1::2/127
+ ipv6 address 2001:ABCD:ffff:1::2/127
 !
 interface GigabitEthernet0/0/0/6
  description to R10-RR
  ipv4 address 10.1.1.24 255.255.255.254
- ipv6 address 2001:420:ffff:1::24/127
+ ipv6 address 2001:ABCD:ffff:1::24/127
 !
 interface GigabitEthernet0/0/0/7
  shutdown
@@ -309,7 +305,7 @@ router bgp 65000
  address-family ipv6 unicast
   additional-paths receive
   maximum-paths ebgp 32
-  network 2001:420:ffff:1012::1/128
+  network 2001:ABCD:ffff:1012::1/128
  !
  address-family link-state link-state
  !
@@ -325,14 +321,14 @@ router bgp 65000
   address-family link-state link-state
   !
  !
- neighbor 2001:420:ffff:1004::1
+ neighbor 2001:ABCD:ffff:1004::1
   remote-as 65000
   bmp-activate server 1
   update-source Loopback0
   address-family vpnv4 unicast
   !
  !
- neighbor 2001:420:ffff:1016::1
+ neighbor 2001:ABCD:ffff:1016::1
   remote-as 65000
   bmp-activate server 1
   update-source Loopback0
@@ -373,11 +369,11 @@ segment-routing
  global-block 100000 163999
  srv6
   encapsulation
-   source-address 2001:420:ffff:1012::1
+   source-address 2001:ABCD:ffff:1012::1
   !
   locators
    locator MAIN
-    prefix 2001:420:ffff:1012::/64
+    prefix 2001:ABCD:ffff:1012::/64
    !
   !
  !
