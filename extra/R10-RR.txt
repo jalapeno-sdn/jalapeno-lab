@@ -1,9 +1,5 @@
 hostname R10-RR
 clock timezone PST America/Los_Angeles
-username cisco
- group root-lr
- group cisco-support
- secret 10 $6$DwOOajaa7dN0a...$ctT66dzf2EBlsji/ViZcCdHndvzAv6FzgIplVjeZi/o/JUZxgBGeawRoPZ9t4bRQU.QcAZ8nwMxfdWBnHqCJH0
 !
 grpc
  port 57400
@@ -54,7 +50,7 @@ netconf-yang agent
 !
 interface Loopback0
  ipv4 address 10.0.0.10 255.255.255.255
- ipv6 address 2001:420:ffff:1010::1/128
+ ipv6 address 2001:ABCD:ffff:1010::1/128
 !
 interface Loopback500
  vrf carrots
@@ -67,12 +63,12 @@ interface MgmtEth0/RP0/CPU0/0
 interface GigabitEthernet0/0/0/0
  description to R12-LSR
  ipv4 address 10.1.1.25 255.255.255.254
- ipv6 address 2001:420:ffff:1::25/127
+ ipv6 address 2001:ABCD:ffff:1::25/127
 !
 interface GigabitEthernet0/0/0/1
  description to R11-LSR
  ipv4 address 10.1.1.27 255.255.255.254
- ipv6 address 2001:420:ffff:1::27/127
+ ipv6 address 2001:ABCD:ffff:1::27/127
 !
 interface GigabitEthernet0/0/0/2
  shutdown
@@ -187,7 +183,7 @@ router bgp 65000
  address-family ipv6 unicast
   additional-paths receive
   maximum-paths ebgp 32
-  network 2001:420:ffff:1010::1/128
+  network 2001:ABCD:ffff:1010::1/128
  !
  address-family link-state link-state
  !
@@ -240,10 +236,10 @@ router bgp 65000
   use neighbor-group RR-clients
   bmp-activate server 1
  !
- neighbor 2001:420:ffff:1013::1
+ neighbor 2001:ABCD:ffff:1013::1
   use neighbor-group RRv6-clients
  !
- neighbor 2001:420:ffff:1014::1
+ neighbor 2001:ABCD:ffff:1014::1
   use neighbor-group RRv6-clients
  !
  vrf carrots
@@ -266,11 +262,11 @@ segment-routing
  global-block 100000 163999
  srv6
   encapsulation
-   source-address 2001:420:ffff:1010::1
+   source-address 2001:ABCD:ffff:1010::1
   !
   locators
    locator MAIN
-    prefix 2001:420:ffff:1010::/64
+    prefix 2001:ABCD:ffff:1010::/64
    !
   !
  !
