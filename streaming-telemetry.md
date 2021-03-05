@@ -1,7 +1,7 @@
-Streaming of specific telemetry data from IOS-XR routers
+## Streaming of specific telemetry data from IOS-XR routers
 
-1.	Install pyang (a handy python-based tool for exploring a YANG data model’s tree structure)
-
+#### 1.	Install pyang (a handy python-based tool for exploring a YANG data model’s tree structure)
+```
 brmcdoug > pip install pyang
 /usr/lib/python2.7/dist-packages/OpenSSL/crypto.py:12: CryptographyDeprecationWarning: Python 2 is no longer supported by the Python core team. Support for it is now deprecated in cryptography, and will be removed in a future release.
   from cryptography import x509
@@ -13,9 +13,9 @@ Collecting lxml (from pyang)
     100% |████████████████████████████████| 5.5MB 122kB/s 
 Installing collected packages: lxml, pyang
 Successfully installed lxml-4.6.2 pyang-2.4.0
+```
 
-
-2.	Clone YANG model repository
+#### 2.	Clone YANG model repository
 
 brmcdoug > git clone https://github.com/YangModels/yang.git
 Cloning into 'yang'...
