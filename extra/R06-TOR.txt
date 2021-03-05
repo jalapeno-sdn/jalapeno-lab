@@ -1,16 +1,12 @@
 hostname R06-TOR
 clock timezone PST America/Los_Angeles
-username cisco
- group root-lr
- group cisco-support
- secret 10 $6$HybiC/zdfHuu2C/.$B1U8cw12TDoNGv0LPZs5rH53AU.VoF88KIfdeXZosk37gMQZTLOf5F7ExYLpZ7arOx2HgGyPkRAuhnRt4a3OY/
 !
 grpc
  port 57400
 !
 telemetry model-driven
  destination-group jalapeno
-  address-family ipv4 198.62.154.4 port 32400
+  address-family ipv4 10.251.251.1 port 32400
    encoding self-describing-gpb
    protocol grpc no-tls
   !
@@ -57,7 +53,7 @@ netconf-yang agent
 !
 interface Loopback0
  ipv4 address 10.0.0.6 255.255.255.255
- ipv6 address 2001:420:ffff:1006::1/128
+ ipv6 address 2001:ABCD:ffff:1006::1/128
 !
 interface MgmtEth0/RP0/CPU0/0
  description mgt  
@@ -66,29 +62,29 @@ interface MgmtEth0/RP0/CPU0/0
 interface GigabitEthernet0/0/0/0
  description to R05 
  ipv4 address 10.1.1.57 255.255.255.254
- ipv6 address 2001:420:ffff:1::57/127
+ ipv6 address 2001:ABCD:ffff:1::57/127
 !
 interface GigabitEthernet0/0/0/1
  description to R09
  ipv4 address 10.1.1.72 255.255.255.254
- ipv6 address 2001:420:ffff:1::72/127
+ ipv6 address 2001:ABCD:ffff:1::72/127
 !
 interface GigabitEthernet0/0/0/2
  description to R08
  ipv4 address 10.1.1.64 255.255.255.254
- ipv6 address 2001:420:ffff:1::64/127
+ ipv6 address 2001:ABCD:ffff:1::64/127
 !
 interface GigabitEthernet0/0/0/3
  description to R04
  mtu 1460
  ipv4 address 10.1.1.42 255.255.255.254
- ipv6 address 2001:420:ffff:1::42/127
+ ipv6 address 2001:ABCD:ffff:1::42/127
 !
 interface GigabitEthernet0/0/0/4
  description to R03
  mtu 1460
  ipv4 address 10.1.1.48 255.255.255.254
- ipv6 address 2001:420:ffff:1::48/127
+ ipv6 address 2001:ABCD:ffff:1::48/127
 !
 interface GigabitEthernet0/0/0/5
  shutdown
@@ -225,11 +221,11 @@ segment-routing
  global-block 100000 163999
  srv6
   encapsulation
-   source-address 2001:420:ffff:1006::1
+   source-address 2001:ABCD:ffff:1006::1
   !
   locators
    locator MAIN
-    prefix 2001:420:ffff:1006::/64
+    prefix 2001:ABCD:ffff:1006::/64
    !
   !
  !
