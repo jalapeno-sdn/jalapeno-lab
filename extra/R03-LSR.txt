@@ -62,32 +62,32 @@ interface MgmtEth0/RP0/CPU0/0
 interface GigabitEthernet0/0/0/0
  description to R01 
  ipv4 address 10.1.1.33 255.255.255.254
- ipv6 address 2001:ABCD::ffff:1::33/127
+ ipv6 address 2001:ABCD:ffff:1::33/127
 !
 interface GigabitEthernet0/0/0/1
  description to R02
  ipv4 address 10.1.1.47 255.255.255.254
- ipv6 address 2001:ABCD::ffff:1::47/127
+ ipv6 address 2001:ABCD:ffff:1::47/127
 !
 interface GigabitEthernet0/0/0/2
  description to R06
  mtu 1460
  ipv4 address 10.1.1.49 255.255.255.254
- ipv6 address 2001:ABCD::ffff:1::49/127
+ ipv6 address 2001:ABCD:ffff:1::49/127
  shutdown
 !
 interface GigabitEthernet0/0/0/3
  description to R07
  mtu 1460
  ipv4 address 10.1.1.51 255.255.255.254
- ipv6 address 2001:ABCD::ffff:1::51/127
+ ipv6 address 2001:ABCD:ffff:1::51/127
  shutdown 
 !
 interface GigabitEthernet0/0/0/4
  description to R12
  mtu 1460
  ipv4 address 10.1.1.12 255.255.255.254
- ipv6 address 2001:ABCD::ffff:1::12/127
+ ipv6 address 2001:ABCD:ffff:1::12/127
 !
 interface GigabitEthernet0/0/0/5
  description to R16
@@ -241,11 +241,11 @@ segment-routing
  global-block 100000 163999
  srv6
   encapsulation
-   source-address 2001:ABCD::ffff:1003::1
+   source-address 2001:ABCD:ffff:1003::1
   !
   locators
    locator MAIN
-    prefix 2001:ABCD::ffff:1003::/64
+    prefix 2001:ABCD:ffff:1003::/64
    !
   !
  !
