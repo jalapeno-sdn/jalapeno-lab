@@ -7,7 +7,7 @@ import sys
 cmdargs = str(sys.argv)
 
 cmd1 = ['qemu-system-x86_64', '-enable-kvm', '-smbios', 'type=1,manufacturer=cisco,product=CiscoIOSXRv9000,uuid=d8d586bb-95e7-4a28-bc05-eca03d99b029', \
-'-cpu', 'host', '-drive', 'file=/opt/images/jalapeno-lab/%s,if=virtio,media=disk,index=1' %(sys.argv[1]), \
+'-cpu', 'host', '-drive', 'file=/opt/images/%s,if=virtio,media=disk,index=1' %(sys.argv[1]), \
 '-smp', 'cores=2,threads=1,sockets=1', '-display', 'none', '-daemonize', '-m', '14336', '-rtc', 'base=utc', \
 '-serial', 'telnet::20%s0,server,nowait' %(sys.argv[2]), '-serial', 'telnet::20%s1,server,nowait' %(sys.argv[2]), \
 '-serial', 'telnet::20%s2,server,nowait' %(sys.argv[2]), '-serial', 'telnet::20%s3,server,nowait' %(sys.argv[2]), \
